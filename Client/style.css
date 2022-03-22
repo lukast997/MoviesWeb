@@ -1,0 +1,44 @@
+body{
+    background-image: url('../img/1.jpg');
+    margin: 0 auto;
+    text-align: center;
+    color: white;
+    font-size: 34px;
+}
+.bioskopi{
+    font-size: 24px;
+    margin-right: 25px;
+}
+.odaberiBioskop{
+    font-size: 22px;
+}
+#kontejnerDana button{
+    padding: 5px;
+    font-size: 24px;
+    margin-right: 15px;
+}
+#kontejnerDana{
+    margin-top: 25px;
+}
+.filmItem{
+    font-size: 22px;
+    color: white;
+    background-color: rgba(255, 255, 255, 0.3); 
+    margin: auto;
+    width: 15%;
+    border: 3px solid black;
+    padding: 10px;
+    margin-bottom: 20px;
+    margin-top:20px;
+}
+.pronadji{
+    font-size: 24px;
+    margin-right: 15px;
+}
+.pronadjibtn{
+    font-size: 20px;
+    padding: 5px;
+}
+.pretragaKontejner{
+    margin-top: 25px;
+}
