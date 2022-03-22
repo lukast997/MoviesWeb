@@ -105,6 +105,30 @@ namespace Movies.Controllers
         }
         }
 
+        [Route("Izbrisi")]
+        [HttpDelete]
+        public async Task<ActionResult> Izbrisi(int id)
+        {
+            if(id <= 0)
+            {
+                return BadRequest("Pogresan ID");
+            }
+            try
+            {
+                var bioskop = await Context.Bioskop.FindAsync(id);
+                var nazivBioskopa = bioskop.Naziv;
+                Context.Bioskop.Remove(bioskop);
+                await Context.SaveChangesAsync();
+                return Ok($"Uspesno izbrisan bioskop: {nazivBioskopa}");
+
+            }
+            catch(Exception e)
+            {
+
+            return BadRequest(e.Message);
+            }
+        }
+
       
     }
 }

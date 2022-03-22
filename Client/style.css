@@ -2,7 +2,7 @@ body{
     background-image: url('../img/1.jpg');
     margin: 0 auto;
     text-align: center;
-    color: white;
+    color: black;
     font-size: 34px;
 }
 .bioskopi{
@@ -21,15 +21,18 @@ body{
     margin-top: 25px;
 }
 .filmItem{
+    vertical-align: middle;
+    display: inline-block;
+    height: 175px;
     font-size: 22px;
-    color: white;
+    color: black;
     background-color: rgba(255, 255, 255, 0.3); 
-    margin: auto;
     width: 15%;
     border: 3px solid black;
     padding: 10px;
     margin-bottom: 20px;
     margin-top:20px;
+    margin-right: 25px;
 }
 .pronadji{
     font-size: 24px;
@@ -41,4 +44,15 @@ body{
 }
 .pretragaKontejner{
     margin-top: 25px;
+}
+.selectMovie{
+    margin-top: 125px;
+}
+.dodajBioskop{
+    position: fixed;
+    top: 1px;
+    right: 15px;
+}
+.dodajDiv{
+    float: right;
 }

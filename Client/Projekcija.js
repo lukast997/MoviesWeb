@@ -1,3 +1,4 @@
+import { Bioskop } from "./Bioskop.js";
 import { Dani } from "./Dani.js";
 export class Projekcija{
     constructor(listaBioskopa){
@@ -42,8 +43,71 @@ export class Projekcija{
         btn.onclick=(ev)=>this.nadjiRepertoar(host);
         d.appendChild(btn);
         let div;
-        div = document.createElement("div")
-        div.className = "pretragaKontejner"
+        let dodajBtn;
+        let izmeniB;
+        let izmeniBtn;
+        let izmeniD;
+        let dodajD;
+        let dodajDD;
+        let dodajB;
+        let izbrisiD;
+        let izbrisiBtn;
+        div = document.createElement("div");
+        div.className = "pretragaKontejner";
+        dodajD = document.createElement("div");
+        dodajD.className = "dodajBioskop";
+        dodajDD = document.createElement("div");
+        dodajDD.className = "dodajDiv";
+        dodajBtn = document.createElement("button");
+        dodajBtn.onclick=(ev)=>this.DodajBioskop();
+        dodajBtn.innerHTML = "Dodaj Bioskop";
+        dodajB = document.createElement("input");
+        dodajB.placeholder = "Unesite naziv";
+        dodajB.id = "dodajBioskop";
+        dodajB.type= "text";
+        dodajDD.appendChild(dodajB);
+        dodajDD.appendChild(dodajBtn);
+        dodajD.appendChild(dodajDD);
+        let izs = document.createElement("select");
+        izs.className = "bioskopiI";
+        let iz;
+        this.listaBioskopa.forEach(p=>{
+            iz = document.createElement("option");
+            iz.innerHTML = p.naziv;
+            iz.value = p.id;
+            izs.appendChild(iz);
+        })
+        izmeniD = document.createElement("div");
+        izmeniB = document.createElement("input");
+        izmeniB.placeholder = "Naziv Bioskopa";
+        izmeniB.type = "text";
+        izmeniB.id = "izmeniB";
+        izmeniBtn = document.createElement("button");
+        izmeniBtn.innerHTML ="Izmeni";
+        izmeniBtn.onclick=(ev)=>this.IzmeniBioskop();
+        izmeniD.appendChild(izs);
+        izmeniD.appendChild(izmeniB);
+        izmeniD.appendChild(izmeniBtn);
+        dodajD.appendChild(izmeniD);
+        izbrisiD = document.createElement("div");
+        izbrisiD.className = "dodajDiv";
+
+        let izbb = document.createElement("select");
+        izbb.className = "bioskopiIzb";
+        let izb;
+        this.listaBioskopa.forEach(p=>{
+            izb = document.createElement("option");
+            izb.innerHTML = p.naziv;
+            izb.value = p.id;
+            izbb.appendChild(izb);
+        })
+
+        izbrisiBtn = document.createElement("button");
+        izbrisiBtn.innerHTML ="Izbrisi";
+        izbrisiD.appendChild(izbb);
+        izbrisiBtn.onclick=(ev)=>this.IzbrisiBioskop();
+        izbrisiD.appendChild(izbrisiBtn);
+        dodajD.appendChild(izbrisiD);
         let sr;
         sr = document.createElement("input");
         sr.type="text";
@@ -55,6 +119,7 @@ export class Projekcija{
         sbtn.innerHTML = "pronadji";
         sbtn.onclick=(ev)=>this.pronadjiFilm(host);
         host.appendChild(d);
+        host.appendChild(dodajD);
         div.appendChild(sr);
         div.appendChild(sbtn)
         host.appendChild(div)
@@ -178,5 +243,60 @@ export class Projekcija{
             
         })
     }
+    DodajBioskop(){
+        let bioskop = document.getElementById("dodajBioskop").value;
+        if(bioskop){
+            let bioskop1 = {
+                "naziv":bioskop,
+                "adresa": "adresa"}
+            fetch("https://localhost:5001/Bioskop/Dodaj Bioskop",{
+                method:"POST",
+                headers:{
+                    "Content-Type":"application/json"
+                },
+                body:JSON.stringify(bioskop1)
+            }).then( b => {
+                alert("Dodali ste bioskop");
+            })
+        }
+        else{
+            alert("Unesite naziv bioskopa");
+        }
+    }
+    IzmeniBioskop(){
+        let bioskop = document.getElementById("izmeniB").value;
+        if(bioskop){
+        let bioskop1 = {
+            "naziv":bioskop,
+            "adresa": "adresa"}
+        let optionEl = this.kont.querySelector(".bioskopiI");
+        var bioskopId = optionEl.options[optionEl.selectedIndex].value;
+        fetch("https://localhost:5001/Bioskop/Izmeni Bioskop?IdBioskopa="+bioskopId,{
+                method:"PUT",
+                headers:{
+                    "Content-Type":"application/json"
+                },
+                body:JSON.stringify(bioskop1)
+            }).then( b => {
+                alert("Izmenili ste bioskop");
+            })
+        }
+        else{
+            alert("Unesite naziv bioskopa");
+        }
+    }
+    
+    IzbrisiBioskop(){
+        let optionEl = this.kont.querySelector(".bioskopiIzb");
+        var bioskopId = optionEl.options[optionEl.selectedIndex].value;
+        console.log(bioskopId,optionEl);
+
+        fetch("https://localhost:5001/Bioskop/Izbrisi?id="+bioskopId, {
+            method: 'DELETE',
+            }).then(p=>{
+                alert("Izbrisali ste bioskop");
+            })
+        }
+    
 
 }

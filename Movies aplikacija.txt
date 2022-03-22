@@ -1,0 +1,9 @@
+Movies
+Kreirao sam aplikaciju sa nazivom Movies. Napravljene su tri baze: Bioskop, Dani i Film koje su medjusobno povezane.
+Svaka od njih ima potrebne CRUD funkcije.
+Aplikacija je zamišljena tako da kada se korisnik poveže izabere željeni bioskop, i pritiskom na dugme odaberi biskop 
+dobija mogućnost odabira dana u nedelji kada se prikazuju filmovi. Pristiskom na željeni dan dobija informacije o nazivu,
+ceni i početku projekcije filmova koji se daju tog dana u odabranom bioskopu. U koliko željeni bioskop ne prikazuje filmove 
+nekog dana u nedelji neće postojati mogućnost odabira tog dana.
+Pored toga postoji search u koji moježete uneti naziv filma i pritiskom na dugme pronadji u koliko film nije u bazi izaći će
+ poruka kako se traženi film ne daje ni u jednom biskopu, a ako postoji izaći će informacije o filmu.
